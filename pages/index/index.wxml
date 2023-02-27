@@ -1,0 +1,25 @@
+<view class="swiper-container">
+  <swiper class="swiper1" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <image mode="aspectFill" bindtap="tapBanner" data-url="{{item.linkUrl}}" src="{{item.picUrl}}" />
+    </swiper-item>
+  </swiper>
+</view>
+
+<view class="category-box">
+  <view class="category-list" wx:for="{{categories}}" wx:key="id" bindtap="tabClick" data-id="{{item.id}}">
+    <image src="{{item.icon}}" mode="aspectFill" class="category-imgbox"/>
+    <view class="category-title">{{item.name}}</view>
+  </view>
+</view>
+
+<view class="notice-box" wx:if="{{ notice }}">
+  <van-notice-bar mode="link" text="{{ notice.title }}" background="#FFFFFF"
+        data-id="{{ item.id }}" speed="30" bind:click="goNotice">
+    <image slot="left-icon" class="notice-icon" src="../../images/home/notice.png"></image>
+  </van-notice-bar>
+</view>
+
+<view class="spike-wrap">
+  <image wx:if="{{ adPositionIndexLivePic }}" class="live-banner" src="{{ adPositionIndexLivePic.val }}" mode="widthFix" bindtap="clickAdPositionIndexLive"></image>
+</view>
