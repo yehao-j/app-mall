@@ -8,3 +8,8 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+
+.space {
+  height:20rpx;
+  background-color: #F2f2f2;
+}

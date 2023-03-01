@@ -23,3 +23,53 @@
 <view class="spike-wrap">
   <image wx:if="{{ adPositionIndexLivePic }}" class="live-banner" src="{{ adPositionIndexLivePic.val }}" mode="widthFix" bindtap="clickAdPositionIndexLive"></image>
 </view>
+
+<view class="space"></view>
+
+<van-divider custom-class="table-text" wx:if="{{goodsRecommend.length > 0}}" contentPosition="center">
+  <image class="table-icon-tuijian" src="../../images/home/recommend.png"></image> 爆品推荐
+</van-divider>
+
+<view class="goods-container" wx:if="{{goodsRecommend.length > 0}}">
+  <view class="goods-box" wx:for="{{goodsRecommend}}" wx:key="id" bindtap="toDetailsTap" data-id="{{item.id}}" data-supplytype="{{item.supplyType}}" data-yyid="{{item.yyId}}">
+    <view class="img-box">
+      <image src="{{item.pic}}" class="image" mode="aspectFill" lazy-load="true" />
+    </view>
+    <view class="goods-title">{{item.name}}</view>
+    <view style='display:flex;'>
+      <view class="goods-price">¥ {{item.minPrice}}</view>
+      <view wx:if="{{item.originalPrice && item.originalPrice > 0}}" class="goods-price"
+        style='color:#aaa;text-decoration:line-through'>¥ {{item.originalPrice}}</view>
+    </view>
+  </view>
+</view>
+
+<block wx:if="{{pingtuanList.length > 0}}">
+  <view class="space"></view>
+  <van-divider custom-class="table-text" contentPosition="center">
+    <image class="table-icon-pingtuan" src="../../images/home/pingtuan.png"></image> 全民拼团
+  </van-divider>
+
+  <view class='tuan'>
+    <view class='tuan-item' wx:for="{{pingtuanList}}" wx:key="id">
+      <view class='tuan-goods-pic'>
+        <image src="{{item.pic}}" mode="aspectFill" lazy-load='{{true}}' />
+      </view>
+      <view class='tuan-title'>{{item.name}}</view>
+      <view class='tuan-profile'>{{item.characteristic}}</view>
+      <view class="tuan-bottom">
+        <view class='tuan-price'>
+          <text class='now'>￥ {{item.pingtuanPrice}}</text>
+          <text class='original'>￥ {{item.originalPrice}}</text>
+        </view>
+        <view class="tuan-btn">
+          <button class="ptbtn" type="warn" size="mini" bindtap="toDetailsTap" data-id="{{item.id}}" data-supplytype="{{item.supplyType}}" data-yyid="{{item.yyId}}">拼团</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+<block wx:if="{{goods.length > 0}}">
+
+</block>

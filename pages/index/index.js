@@ -6,14 +6,42 @@ Page({
   data: {
     banners: [],
     categories: [],
+    goodsRecommend: [],
+    pingtuanList: [],
+    goods: [],
     curPage: 0,
   },
 
   onLoad() {
+    const that = this;
+
     this.initBanners();
     this.initCategories();
     this.getNotice();
     this.adPosition();
+    this.pingtuanGoods();
+
+    WXAPI.goodsv2({
+      recommendStatus: 1
+    }).then(res => {
+      if (res.code === 0) {
+       that.setData({
+          goodsRecommend: res.data.result
+        })
+      }      
+    });
+  },
+
+  async pingtuanGoods(){ // 获取团购商品列表
+    const that = this
+    const res = await WXAPI.goodsv2({
+      pingtuan: true
+    });
+    if (res.code === 0) {
+      that.setData({
+        pingtuanList: res.data.result
+      })
+    }
   },
 
   async initBanners() {
